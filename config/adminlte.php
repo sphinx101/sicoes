@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => true,
+    'use_ico_only' => false,
     'use_full_favicon' => false,
 
     /*
@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>SC</b>E',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>SiCo</b>Es',
+    'logo_img' => 'img/logo/sce.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -67,9 +67,9 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-info',
-    'usermenu_image' => false,
+    'usermenu_image' => true,
     'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -102,11 +102,11 @@ return [
     */
 
     'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => '',
+    'classes_auth_header' => 'bg-info',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-info',
 
     /*
     |--------------------------------------------------------------------------
@@ -232,59 +232,117 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'header'  => 'ALUMNO',
+            'role'    => ['docente', 'director'],
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Listar',
+            'url'         => '#',
+            'icon'        => 'fas fa-sort-alpha-down',
+            'role'        => ['docente'],
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Asistencia',
+            'url'         => '#',
+            'icon'        => 'fas fa-tasks',
+            'role'        => ['docente']
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'text'        => 'Calificaciones',
+            'icon'        => 'fas fa-edit',
+            'role'        => ['director', 'docente', 'administrativo', 'alumno'],
+            'submenu'     => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'  => 'Registro',
+                    'icon'  => 'fas fa-file-alt',
+                    'url'   => '#',
+                    'role'  => ['docente']
                 ],
                 [
-                    'text'    => 'level_one',
+                    'text'  => 'Concentrado',
+                    'icon'  => 'fas fa-newspaper',
+                    'url'   => '#',
+                    'role'  => ['director', 'docente', 'administrativo']
+
+                ],
+                [
+                    'text'  => 'Concentrado Alumno',
+                    'icon'  => 'fas fa-id-badge',
+                    'url'   => '#',
+                    'role'  => ['director', 'docente', 'administrativo', 'alumno']
+                ]
+            ]
+
+        ],
+        [
+            'text'        => 'Registrar Padre/Tutor',
+            'url'         => '#',
+            'icon'        => 'fas fa-user-friends',
+            'role'        => ['docente']
+        ],
+        [
+            'header'  => 'DOCENTE',
+            'role'    => ['director', 'supervisor'],
+        ],
+        [
+            'text' => 'Registrar Docente',
+            'route' => 'docentes.create',
+            //'url'         => '#',
+            'icon' => 'fas fa-user-plus',
+            'role' => ['supervisor', 'director']
+        ],
+        [
+            'text' => 'Datos Generales',
+            //'route'  => "docentes.index",
+            'url'         => '#',
+            'icon' => 'fas fa-id-card',
+            'role' => ['director', 'supervisor']
+        ],
+        [
+            'text' => 'Aulas Asignadas',
+            //'route'  => 'aula.index',
+            'url'         => '#',
+            'icon' => 'fas fa-list-ol',
+            //'url' => '#',
+            'role' => ['director', 'administrativo']
+        ],
+        [
+            'text' => 'Docentes por Escuela',
+            //'route'=>'docentes.xct.listar',
+            'url'         => '#',
+            'icon' => 'fas fa-home',
+            'role' => ['supervisor', 'administrativo'],
+        ],
+        [   //'role' => 'director',
+            'text'    => 'Multilevel',
+            'icon'    => 'share',
+
+            'submenu' => [
+                [
+                    'text' => 'Level One',
+                    'url'  => '#',
+                    //'role' => 'director',
+                ],
+                [
+                    'text'    => 'Level One',
                     'url'     => '#',
+                    //'role' => 'director',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text' => 'Level Two',
                             'url'  => '#',
                         ],
                         [
-                            'text'    => 'level_two',
+                            'text'    => 'Level Two',
                             'url'     => '#',
+                            //'role' => 'director',
                             'submenu' => [
                                 [
-                                    'text' => 'level_three',
+                                    'text' => 'Level Three',
                                     'url'  => '#',
                                 ],
                                 [
-                                    'text' => 'level_three',
+                                    'text' => 'Level Three',
                                     'url'  => '#',
                                 ],
                             ],
@@ -292,27 +350,64 @@ return [
                     ],
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Level One',
                     'url'  => '#',
                 ],
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'header'  => 'INSCRIPCION',
+            'role'    => ['director', 'administrativo'],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'      => 'Alumno',
+            'icon'      => 'fas fa-user-graduate',
+            'role'      => ['director', 'administrativo'],
+            'submenu'   => [
+                [
+                    'text'       => 'Pre-Inscripcion',
+                    'icon'       => 'fas fa-user-plus',
+                    //'route'        => 'alumnos.create',
+                    'url'         => '#',
+                    'role'       => ['director', 'administrativo'],
+                ],
+                [
+                    'text'       => 'Inscripcion',
+                    'icon'       => 'fas fa-graduation-cap',
+                    'url'        => '#',
+                    'role'       => ['director', 'administrativo']
+                ],
+            ],
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'      => 'Reportes Alumnos',
+            'icon'      => 'fas fa-user-graduate',
+            'role'      => ['director', 'administrativo'],
+            'submenu'   => [
+                [
+                    'text'       => 'Pre-Inscritos',
+                    'icon'       => 'fas fa-sort-alpha-down',
+                    // 'route' => 'alumnos.index',
+                    'url'         => '#',
+                    'role'       => ['director', 'administrativo'],
+                ],
+                [
+                    'text'       => 'Inscritos',
+                    'icon'       => 'fas fa-sort-alpha-down',
+                    'url'        => '#',
+                    'role'       => ['director', 'administrativo'],
+                ],
+                [
+                    'text'       => 'Sin Inscripcion',
+                    'icon'       => 'fas fa-sort-alpha-down',
+                    'url'        => '#',
+                    'role'       => ['director', 'administrativo'],
+                ],
+            ],
         ],
+
+
+
     ],
 
     /*
@@ -328,11 +423,13 @@ return [
     */
 
     'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        //JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
+        App\Filter\MenuFilterRole::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
