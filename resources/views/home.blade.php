@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @inertia
 
+    @inertia
 
 @endsection

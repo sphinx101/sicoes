@@ -6,9 +6,11 @@
 
 require('./bootstrap');
 import { App, plugin } from '@inertiajs/inertia-vue';
+// Custam CSS
+import "./assets/main.styl";
 
 window.Vue = require('vue');
-
+Vue.use(plugin);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -31,6 +33,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 /*const app = new Vue({
     el: '#app',
 });*/
+
     const el = document.getElementById('app');
 
     if (el) {

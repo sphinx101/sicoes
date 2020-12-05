@@ -37,7 +37,7 @@ $factory->defineAs(User::class, 'docentes', function (Faker $faker) {
             ->where(
                 'name',
                 $faker->randomElement(
-                    $array = array('director', 'docente', 'administrativo')
+                    $array = array('supervisor', 'director', 'docente', 'administrativo')
                 )
             )
             ->first()

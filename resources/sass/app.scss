@@ -1,6 +1,7 @@
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Nunito");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+
 // Fortawesome/Fontawesome-free
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
@@ -18,3 +19,8 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+//toastr
+@import '~toastr/build/toastr.css';
+
+

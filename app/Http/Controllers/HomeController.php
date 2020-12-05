@@ -30,8 +30,6 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'nombre'    => 'Reynaldo',
-            'apellido'  => 'Victor',
             'header'    => 'Componente HOME con render de Inertia',
 
         ];

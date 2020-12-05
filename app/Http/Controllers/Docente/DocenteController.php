@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers\Docente;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Repositorios\DocenteRepo;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\DocenteResource;
+use App\Repositorios\CentrotrabajoRepo;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\RequestCreateDocente;
 
 class DocenteController extends Controller
 {
+    private $centrotrabajo_repo;
+    private $docente_repo;
 
-    public function __construct()
+    public function __construct(DocenteRepo $docente_repo, CentrotrabajoRepo $ctr)
     {
+        $this->centrotrabajo_repo = $ctr;
+        $this->docente_repo = $docente_repo;
         view()->share('MostrarMenu', true); //variable $MostrarMenu compartida en las vista
     }
 
@@ -30,7 +40,14 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Docente/Registro/Index.vue');
+        $ccts = $this->centrotrabajo_repo->mapCCT();
+        $roles = \App\Models\Role::whereIn('name', ['director', 'docente'])->get();
+
+        $props = [
+            'ccts' => $ccts,
+            'roles' => $roles
+        ];
+        return Inertia::render('Docente/Registro/Index.vue', $props);
     }
 
     /**
@@ -39,9 +56,19 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestCreateDocente $request)
     {
-        //
+
+        //$request['user_id'] = Auth::user()->id;
+        //return Redirect::route('home');
+        //return Inertia::location('/home');
+        $rs = $this->docente_repo->store($request);
+
+        if ($rs['success']) {
+            return response()->json(new DocenteResource($rs['data']), 201);
+        } else {
+            return response()->json($rs['errors'], $rs['errors']['code']);
+        }
     }
 
     /**

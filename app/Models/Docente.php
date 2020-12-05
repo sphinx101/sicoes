@@ -39,7 +39,9 @@ class Docente extends Model
         'domicilio'        => 'required',
         'localidad'        => 'required',
         'municipio'        => 'required',
-        'estado'           => 'required'
+        'estado'           => 'required',
+        'email'            => 'required|string|email|max:255|unique:users',
+        'type'             => 'required'
     ];
 
     /****************************  R E L A C I O N E S  *********************************************/

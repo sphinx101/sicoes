@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-info',
+    'usermenu_header_class' => 'bg-purple',
     'usermenu_image' => true,
     'usermenu_desc' => false,
     'usermenu_profile_url' => true,
@@ -101,8 +101,8 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => 'bg-info',
+    'classes_auth_card' => 'card-outline card-success',
+    'classes_auth_header' => 'bg-purple',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
@@ -121,14 +121,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'navbar-info',
+    'classes_brand' => 'navbar-purple',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-info elevation-4',
+    'classes_sidebar' => 'sidebar-dark-purple elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-info navbar-light',
+    'classes_topnav' => 'navbar-purple navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -285,11 +285,11 @@ return [
             'role'    => ['director', 'supervisor'],
         ],
         [
-            'text' => 'Registrar Docente',
+            'text' => 'Registrar Personal',
             'route' => 'docentes.create',
             //'url'         => '#',
             'icon' => 'fas fa-user-plus',
-            'role' => ['supervisor', 'director']
+            'role' => ['supervisor']
         ],
         [
             'text' => 'Datos Generales',

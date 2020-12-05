@@ -14,7 +14,7 @@ class HandleInertiaRequests extends Middleware
      * @see https://inertiajs.com/server-side-setup#root-template
      * @var string
      */
-    protected $rootView = 'home';    //ruta de la vista donde se cargara inertia
+    protected $rootView = 'home';    //vista donde se cargara inertia
 
     /**
      * Determines the current asset version.
@@ -37,13 +37,18 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
-        return array_merge(parent::share($request), [
-
-        ]);
+        //return array_merge(parent::share($request), []);
         /*return [
             'errors' => function () use ($request) {
                 return $this->resolveValidationErrors($request);
             },
         ];*/
+        return array_merge(parent::share($request), [
+            'errors' => function () use ($request) {
+                return $request->session()->get('errors')
+                ? $request->session()->get('errors')->getBag('default')->getMessages()
+                : (object)[];
+            }
+        ]);
     }
 }
