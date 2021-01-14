@@ -225,23 +225,23 @@ export default {
             });
         },
         editData(docente){
-
+            //console.log(docente);
             var formData = new FormData();
-            formData.append("centrotrabajo_id", this.docente.centrotrabajo_id);
-            formData.append("rfc", this.docente.rfc);
-            formData.append("curp", this.docente.curp);
-            formData.append("nombre", this.docente.nombre);
-            formData.append("appaterno", this.docente.appaterno);
-            formData.append("apmaterno", this.docente.apmaterno);
-            formData.append("domicilio", this.docente.domicilio);
-            formData.append("localidad", this.docente.localidad);
-            formData.append("municipio", this.docente.municipio);
-            formData.append("estado", this.docente.estado);
-            formData.append("telefono", this.docente.telefono);
-            formData.append("celular", this.docente.celular);
-            formData.append("email", this.docente.user.email);
-            formData.append("type", this.docente.user.type);
-
+            formData.append("centrotrabajo_id", docente.centrotrabajo_id);
+            formData.append("rfc", docente.rfc);
+            formData.append("curp", docente.curp);
+            formData.append("nombre", docente.nombre);
+            formData.append("appaterno", docente.appaterno);
+            formData.append("apmaterno", docente.apmaterno);
+            formData.append("domicilio", docente.domicilio);
+            formData.append("localidad", docente.localidad);
+            formData.append("municipio", docente.municipio);
+            formData.append("estado", docente.estado);
+            formData.append("telefono", docente.telefono);
+            formData.append("celular", docente.celular);
+            formData.append("email", docente.user.email);
+            formData.append("type", docente.user.type);
+            //console.log(formData.getAll('email'));
             $('#modalEdit').modal('show');
 
         },
@@ -295,7 +295,7 @@ export default {
 
 <style lang="stylus" scoped>
 table.dataTable.dataTable_width_auto
-    width: auto;
+    width:auto
 
 
 </style>

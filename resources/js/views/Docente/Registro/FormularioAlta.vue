@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-4">
+              <!--div class="form-group col-md-4">
                 <label for="centrotrabajo_id" class="mb-0 default-text-color">
                   Centro de Trabajo<span class="text-color-red">*</span></label
                 >
@@ -43,7 +43,7 @@
                 >
                   {{ errors.centrotrabajo_id[0] }}
                 </div>
-              </div>
+              </!--div-->
               <div class="form-group col-md-4">
                 <label for="lblrfc" class="mb-0 default-text-color">
                   RFC <span class="text-color-red">*</span></label
@@ -299,38 +299,67 @@
                 </div>
               </div>
             </div>
+            <!-- form-row -->
             <section class="titulo-seccion-text-color">
-              <h5><strong>Dato Puesto Trabajo</strong></h5>
+              <h5><strong>Datos Laborales</strong></h5>
             </section>
 
             <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="puesto" class="mb-0 default-text-color">
-                  Puesto<span class="text-color-red">*</span></label
-                >
-                <select
-                  v-model="form.type"
-                  id="puesto"
-                  class="custom-select custom-select-sm form-control"
-                  :class="ClassIsInvalid('type')"
-                  name="Puesto"
-                  aria-describedby="errorPuesto"
-                >
-                  <option
-                    v-for="rol in roles"
-                    :key="rol.id"
-                    :value="rol.id"
-                    v-text="rol.display_name"
-                  ></option>
-                </select>
-                <div
-                  v-if="this.errors.type"
-                  id="errorPuesto"
-                  class="invalid-feedback"
-                >
-                  {{ errors.type[0] }}
+                <div class="form-group col-md-4">
+                    <label for="centrotrabajo_id" class="mb-0 default-text-color">
+                        Centro de Trabajo<span class="text-color-red">*</span></label
+                    >
+                    <select
+                        v-model="form.centrotrabajo_id"
+                        id="centrotrabajo_id"
+                        class="custom-select custom-select-sm form-control"
+                        :class="ClassIsInvalid('centrotrabajo_id')"
+                        name="centrotrabajo_id"
+                        aria-describedby="cctError"
+                    >
+                        <option
+                        v-for="ct in ccts"
+                        :key="ct.id"
+                        :value="ct.id"
+                        v-text="`${ct.nombre}-(${ct.cct})`"
+                        ></option>
+                    </select>
+                    <div
+                        v-if="this.errors.centrotrabajo_id"
+                        id="cctError"
+                        class="invalid-feedback"
+                    >
+                        {{ errors.centrotrabajo_id[0] }}
+                    </div>
                 </div>
-              </div>
+
+                <div class="form-group col-md-4">
+                    <label for="puesto" class="mb-0 default-text-color">
+                    Puesto<span class="text-color-red">*</span></label
+                    >
+                    <select
+                    v-model="form.type"
+                    id="puesto"
+                    class="custom-select custom-select-sm form-control"
+                    :class="ClassIsInvalid('type')"
+                    name="Puesto"
+                    aria-describedby="errorPuesto"
+                    >
+                    <option
+                        v-for="rol in roles"
+                        :key="rol.id"
+                        :value="rol.id"
+                        v-text="rol.display_name"
+                    ></option>
+                    </select>
+                    <div
+                    v-if="this.errors.type"
+                    id="errorPuesto"
+                    class="invalid-feedback"
+                    >
+                    {{ errors.type[0] }}
+                    </div>
+                </div>
             </div>
             <section class="titulo-seccion-text-color">
               <h5><strong>Foto Docente</strong></h5>
@@ -462,25 +491,25 @@ export default {
             params: formData
         })*/
         .then((response) => {
-          toastr.success("¡Registro creado con exito!");
-          // console.log(response);
-          this.form.centrotrabajo_id = "";
-          this.form.rfc = "";
-          this.form.curp = "";
-          this.form.nombre = "";
-          this.form.appaterno = "";
-          this.form.apmaterno = "";
-          this.form.domicilio = "";
-          this.form.localidad = "";
-          this.form.municipio = "";
-          this.form.estado = "";
-          this.form.telefono = "";
-          this.form.celular = "";
-          this.form.email = "";
-          this.form.type = "";
-          this.form.photo = "";
+            toastr.success("¡Registro creado con exito!");
+            // console.log(response);
+            this.form.centrotrabajo_id = "";
+            this.form.rfc = "";
+            this.form.curp = "";
+            this.form.nombre = "";
+            this.form.appaterno = "";
+            this.form.apmaterno = "";
+            this.form.domicilio = "";
+            this.form.localidad = "";
+            this.form.municipio = "";
+            this.form.estado = "";
+            this.form.telefono = "";
+            this.form.celular = "";
+            this.form.email = "";
+            this.form.type = "";
+            this.form.photo = "";
 
-          formData = null;
+            formData = null;
 
           //window.location.href='/home';
         })

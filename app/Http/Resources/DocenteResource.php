@@ -31,7 +31,9 @@ class DocenteResource extends JsonResource
             'telefono' => $this->telefono,
             'celular' => $this->celular,
             'photo_name' => $this->user->photo_name,
-            'deleted_at' => $this->deleted_at
+            'deleted_at' => $this->deleted_at,
+            'user' => $this->user,
+            'centrotrabajo' => $this->centrotrabajo
         ];
     }
 }
