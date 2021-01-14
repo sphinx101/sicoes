@@ -20,10 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    //Route::get('/docentes','Docente\DocenteController@index')->name('docentes');
-    Route::resource('docentes','Docente\DocenteController');
+
+    Route::resource('docentes', 'Docente\DocenteController');
+
+    Route::post('ajax/docentes', 'Docente\DocenteController@getDocentes')->name('ajax.docentes.index');
+    
 });
-
-

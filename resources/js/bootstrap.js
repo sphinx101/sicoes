@@ -16,6 +16,29 @@ try {
 
     require('bootstrap');
 
+    //DataTable
+    require('datatables.net-bs4');
+    require('datatables.net-buttons/js/dataTables.buttons');
+    //require('datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js');
+    require('datatables.net-buttons/js/buttons.html5');
+    require('datatables.net-buttons/js/buttons.print');
+    require('datatables.net-responsive/js/dataTables.responsive');
+    require('datatables.net-responsive-bs4/js/responsive.bootstrap4');
+
+    //Bootstrap File input
+    require('bootstrap-fileinput/js/fileinput');
+    require('bootstrap-fileinput/js/locales/es');
+    require('bootstrap-fileinput/js/plugins/piexif');
+    require('bootstrap-fileinput/js/plugins/sortable');
+    require('bootstrap-fileinput/themes/fa/theme');
+    require('bootstrap-fileinput/themes/fas/theme');
+
+
+
+
+
+
+
 } catch (e) {}
 
 /**
@@ -26,6 +49,12 @@ try {
 
 window.axios = require('axios');
 window.toastr = require('toastr');
+window.JSZip = require('jszip/dist/jszip');
+
+// Utilizado para generar PDF
+window.pdfMake = require('pdfmake/build/pdfmake');
+window.pdfFonts = require('pdfmake/build/vfs_fonts');
+pdfMake.vfs=pdfFonts.pdfMake.vfs;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

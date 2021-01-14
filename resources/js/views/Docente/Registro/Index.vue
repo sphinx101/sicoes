@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="row">
       <div
         class="col-md-6 shadow p-0 mb-5 bg-purple rounded d-flex justify-content-center"

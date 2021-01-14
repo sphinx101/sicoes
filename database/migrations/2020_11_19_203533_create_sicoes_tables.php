@@ -31,7 +31,7 @@ class CreateSicoesTables extends Migration
             $table->string('curp', 18)->unique();
             $table->string('nombre');
             $table->string('appaterno');
-            $table->string('apmaterno');
+            $table->string('apmaterno')->nullable();
             $table->string('domicilio');
             $table->string('localidad');
             $table->string('municipio');

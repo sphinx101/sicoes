@@ -11,7 +11,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 'docentes', 80)->create()->each(function ($user) {
+        factory(App\User::class, 'docentes', 500)->create()->each(function ($user) {
             $rol = App\Models\Role::where('name', $user->type)->get();
 
             $faker = Faker\Factory::create('es_ES');

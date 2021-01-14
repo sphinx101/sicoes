@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type'
+        'name', 'email', 'password', 'type', 'photo_name'
     ];
 
     /**
@@ -46,20 +46,33 @@ class User extends Authenticatable
 
 
     //************************** R E L A C I O N E S ************************************** */
+
+    /**
+     * docente
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function docente()
     {
         return $this->hasOne('App\Models\Docente');
     }
 
     //************************** A D M I N L T E ****************************************** */
+
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';
+        //return 'http://sicoes.homestead/storage/photos/docentes/' . $this->photo_name;
+        return env('APP_URL') . '/storage/photos/docentes/' . $this->photo_name;
     }
 
     public function adminlte_profile_url()
     {
         //return 'profile/username';
         return 'perfil';
+    }
+
+    public function adminlte_desc()
+    {
+        return $this->docente->centrotrabajo->nombre;
     }
 }

@@ -6,11 +6,14 @@
 
 require('./bootstrap');
 import { App, plugin } from '@inertiajs/inertia-vue';
+
 // Custam CSS
 import "./assets/main.styl";
 
 window.Vue = require('vue');
 Vue.use(plugin);
+import './plugins/SweetAlert2';
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,6 +26,7 @@ Vue.use(plugin);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

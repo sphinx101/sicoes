@@ -68,7 +68,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-purple',
     'usermenu_image' => true,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => true,
 
     /*
@@ -292,9 +292,9 @@ return [
             'role' => ['supervisor']
         ],
         [
-            'text' => 'Datos Generales',
-            //'route'  => "docentes.index",
-            'url'         => '#',
+            'text' => 'Docentes Registrados',
+            'route'  => "docentes.index",
+            //'url'         => '#',
             'icon' => 'fas fa-id-card',
             'role' => ['director', 'supervisor']
         ],

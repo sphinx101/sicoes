@@ -21,6 +21,7 @@ class DocenteResource extends JsonResource
             'rfc' => $this->rfc,
             'curp' => $this->curp,
             'nombre' => $this->nombre,
+            'nombre_completo' => $this->nombre_completo,
             'appaterno' => $this->appaterno,
             'apmaterno' => $this->apmaterno,
             'domicilio' => $this->domicilio,
@@ -29,6 +30,7 @@ class DocenteResource extends JsonResource
             'estado'    => $this->estado,
             'telefono' => $this->telefono,
             'celular' => $this->celular,
+            'photo_name' => $this->user->photo_name,
             'deleted_at' => $this->deleted_at
         ];
     }

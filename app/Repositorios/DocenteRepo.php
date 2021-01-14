@@ -7,25 +7,54 @@ use Exception;
 use App\Models\Docente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RequestCreateDocente;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class DocenteRepo
 {
+    private $URL_PHOTO_DOCENTE = 'photos/docentes/';
 
     protected $docente = null;
+    protected $docentes = [];
 
-    public function store(RequestCreateDocente $data)
+    public function getDocentes()
     {
 
+        if (Auth::user()->type === 'supervisor') {
+            $this->docentes = Docente::with('user')->with('centrotrabajo')->get();
+            //$this->docentes = Docente::all();
+        } else { //else Director
+            $this->docentes = Docente::with('user')
+                ->with('centrotrabajo')
+                ->whereCentrotrabajo_id(Auth::user()->docente->centrotrabajo_id)->get();
+        }
+        return $this->docentes;
+    }
+
+
+    /**
+     * store
+     *
+     * @param  mixed $data
+     * @return void
+     */
+    public function store(RequestCreateDocente $data)
+    {
+        //$photo_up = request()->file('photo');
         try {
 
             DB::transaction(function () use ($data) {
                 $puesto = \App\Models\Role::where('id', $data['type'])->first()->name;
+                $photo_name = $this->savePhoto($data);
                 $user = User::create([
                     'name' => $data['nombre'],
                     'email' => $data['email'],
                     'type' => $puesto,
+                    'photo_name' => $photo_name,
                     'password' => bcrypt('12345678')
                 ]);
                 $rol = \App\Models\Role::where('id', $data['type'])->get();
@@ -63,9 +92,62 @@ class DocenteRepo
         ];
     }
 
+    public function remove($docente_id)
+    {
+
+        try {
+            DB::transaction(function () use ($docente_id) {
+                $docente = Docente::find($docente_id);
+                $docente->user->delete();
+                $docente->delete();
+            });
+        } catch (QueryException $qEx) {
+            return [
+                'errors' => [
+                    'message' => $qEx->getMessage(),
+                    'sql_exception_code' => $qEx->getCode(),
+                ],
+                'success' => false
+            ];
+        } catch (\Exception $e) {
+            return [
+                'errors' => [
+                    'message' => $e->getMessage(),
+                    'exception_code' => $e->getCode(),
+                ],
+                'success' => false
+            ];
+        }
+        return [
+            'data' => '',
+            'success' => true,
+        ];
+    }
+
+    /**
+     * hasUserDocente
+     *
+     * @return void
+     */
     public static function hasUserDocente()
     {
         $user = User::find(Auth::id());
         return $user->docente != null ? true : false;
+    }
+
+    public function savePhoto($request)
+    {
+        $photoName = 'photo-user.png';
+
+        if ($request->photo != null) {
+
+            $photoName = $request['curp'] . '.jpg';
+            $photo = Image::make($request->photo)->encode('jpg', 85);
+            $photo->resize(640, 480, function ($constraint) {
+                $constraint->upsize();
+            });
+            Storage::put($this->URL_PHOTO_DOCENTE . $photoName, $photo->stream());
+        }
+        return $photoName;
     }
 }
