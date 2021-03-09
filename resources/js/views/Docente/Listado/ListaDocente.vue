@@ -48,11 +48,11 @@
                             class="btn btn-success btn-sm"
                             role="button"
                             title="Ver"><i class="fas fa-eye" aria-hidden="true"></i></a>
-                        <a href="#"
-                            @click.prevent="editData(docente)"
+                        <!--a href="#"
+
                             class="btn btn-warning btn-sm"
                             role="button"
-                            title="Editar"><i class="fas fa-edit" aria-hidden="true"></i></a>
+                            title="Editar"><i class="fas fa-edit" aria-hidden="true"></i></!--a-->
                         <a href="#"
                             @click.prevent="DialogRemoveData(docente)"
                             class="btn btn-danger btn-sm"
@@ -78,25 +78,25 @@
       </div>
       <div class="card-footer"></div>
     </div>
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="MyModalLabelEdit" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+    <!--div class="modal fade" id="modalEdit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="MyModalLabelEdit" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="MyModalLabelEdit">Editar Docente</h5>
+            <div class="modal-header shadow p-1 bg-purple rounded">
+                <h4 class="modal-title" id="MyModalLabelEdit">Editar Docente</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <formulario-edicion></formulario-edicion>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+
+                <button type="button" class="btn btn-success">Guardar Cambios</button>
             </div>
             </div>
         </div>
-    </div>
+    </div-->
   </div>
 </template>
 
@@ -114,6 +114,7 @@
 
 import { getDocentes, retrievePOSTdocentes, destroyDELETEdocente } from "../../../api/docente";
 import Loading from 'vue-loading-overlay';
+//import FormularioEdicion from '../Edicion/FormularioEdicion.vue';
 
 export default {
   name: "ListaDocente",
@@ -224,7 +225,7 @@ export default {
 
             });
         },
-        editData(docente){
+        /*editData(docente){
             //console.log(docente);
             var formData = new FormData();
             formData.append("centrotrabajo_id", docente.centrotrabajo_id);
@@ -244,7 +245,7 @@ export default {
             //console.log(formData.getAll('email'));
             $('#modalEdit').modal('show');
 
-        },
+        },*/
         DialogRemoveData(docente){
 
             this.$swal({

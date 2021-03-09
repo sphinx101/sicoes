@@ -45,26 +45,26 @@
                 </div>
               </!--div-->
               <div class="form-group col-md-4">
-                <label for="lblrfc" class="mb-0 default-text-color">
-                  RFC <span class="text-color-red">*</span></label
-                >
-                <input
-                  v-model="form.rfc"
-                  type="text"
-                  class="form-control form-control-sm"
-                  :class="ClassIsInvalid('rfc')"
-                  id="lblrfc"
-                  name="rfc"
-                  placeholder="Introduce RFC*"
-                  aria-describedby="rfcError"
-                />
-                <div
-                  v-if="this.errors.rfc"
-                  id="rfcError"
-                  class="invalid-feedback"
-                >
-                  {{ errors.rfc[0] }}
-                </div>
+                    <label for="lblrfc" class="mb-0 default-text-color">
+                    RFC <span class="text-color-red">*</span></label
+                    >
+                    <input
+                        v-model="form.rfc"
+                        type="text"
+                        class="form-control form-control-sm"
+                        :class="ClassIsInvalid('rfc')"
+                        id="lblrfc"
+                        name="rfc"
+                        placeholder="Introduce RFC*"
+                        aria-describedby="rfcError"
+                    />
+                    <div
+                        v-if="this.errors.rfc"
+                        id="rfcError"
+                        class="invalid-feedback"
+                    >
+                    {{ errors.rfc[0] }}
+                    </div>
               </div>
               <div class="form-group col-md-4">
                 <label for="lblcurp" class="mb-0 default-text-color">
@@ -93,8 +93,7 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="lblNombre" class="mb-0 default-text-color">
-                  Nombre <span class="text-color-red">*</span></label
-                >
+                  Nombre <span class="text-color-red">*</span></label>
                 <input
                   v-model="form.nombre"
                   type="text"
@@ -115,8 +114,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="lblApPaterno" class="mb-0 default-text-color">
-                  A. Paterno <span class="text-color-red">*</span></label
-                >
+                  A. Paterno <span class="text-color-red">*</span></label>
                 <input
                   v-model="form.appaterno"
                   type="text"
@@ -136,9 +134,8 @@
                 </div>
               </div>
               <div class="form-group col-md-4">
-                <label for="lblApMaterno" class="mb-0 default-text-color"
-                  >A. Materno</label
-                >
+                <label for="lblApMaterno" class="mb-0 default-text-color">
+                    A. Materno</label>
                 <input
                   v-model="form.apmaterno"
                   type="text"
@@ -156,8 +153,7 @@
             <div class="form-row">
               <div class="form-group w-100">
                 <label for="lblDomicilio" class="mb-0 default-text-color">
-                  Domicilio <span class="text-color-red">*</span></label
-                >
+                  Domicilio <span class="text-color-red">*</span></label>
                 <input
                   v-model="form.domicilio"
                   type="text"

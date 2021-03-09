@@ -23,4 +23,12 @@ function destroyDELETEdocente(id) {
     });
 }
 
-export { getDocentes, retrievePOSTdocentes, destroyDELETEdocente };
+function updateDocente(docente) {
+    return axios.patch('docentes/' , docente, {
+        headers: {
+            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
+        }
+    });
+}
+
+export { getDocentes, retrievePOSTdocentes, destroyDELETEdocente, updateDocente };

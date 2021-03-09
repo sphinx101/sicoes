@@ -8,6 +8,7 @@ use App\Models\Docente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RequestCreateDocente;
@@ -33,6 +34,12 @@ class DocenteRepo
                 ->whereCentrotrabajo_id(Auth::user()->docente->centrotrabajo_id)->get();
         }
         return $this->docentes;
+    }
+
+    public function getDocente($docente_id)
+    {
+        //return Docente::whereId($docente_id)->with('user')->with('centrotrabajo')->get();
+        return Docente::find($docente_id);
     }
 
 
@@ -77,6 +84,64 @@ class DocenteRepo
             });
         } catch (Exception $error) {
 
+            return [
+                'errors' => [
+                    'message' => $error->getMessage(),
+                    'code' => $error->getCode(),
+                ],
+                'success' => false
+            ];
+        }
+
+        return  [
+            'data' => $this->docente,
+            'success' => true
+        ];
+    }
+
+    public function update($data)
+    {
+        try {
+
+            DB::transaction(function () use ($data) {
+                $docente_modificado = Docente::find($data->id);
+                $DocenteField = Schema::getColumnListing('docentes');
+                foreach ($DocenteField as $field) {
+                    if (isset($data[$field])) {
+                        if ($docente_modificado[$field] !== $data[$field]) {
+
+                            $docente_modificado[$field] = $data[$field];
+                        }
+                    } else {
+                        if (isset($data['user'])) {
+                            if ($docente_modificado->user->email !== $data['user']['email']) {
+                                $docente_modificado->user->email = $data['user']['email'];
+                                $docente_modificado->user->save();
+                            }
+                        }
+                    }
+                }
+
+                $docente_modificado->save();
+                $this->docente = $docente_modificado;
+            });
+        } catch (QueryException $qEx) {
+            return [
+                'errors' => [
+                    'message' => $qEx->getMessage(),
+                    'sql_exception_code' => $qEx->getCode(),
+                ],
+                'success' => false
+            ];
+        } catch (ModelNotFoundException $mEx) {
+            return [
+                'errors' => [
+                    'message' => $mEx->getMessage(),
+                    'sql_exception_code' => $mEx->getCode(),
+                ],
+                'success' => false
+            ];
+        } catch (Exception $error) {
             return [
                 'errors' => [
                     'message' => $error->getMessage(),

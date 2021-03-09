@@ -89,7 +89,13 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        //
+        $docente = new DocenteResource($this->docente_repo->getDocente($id));
+
+        $props = [
+            'docente' => $docente
+        ];
+
+        return Inertia::render('Docente/Perfil/Index.vue', $props);
     }
 
     /**
@@ -110,9 +116,16 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+
+        $rs = $this->docente_repo->update($request);
+        if ($rs['success']) {
+            return response()->json(new DocenteResource($rs['data']));
+        } else {
+            return response()->json($rs['errors'], 500);
+        }
     }
 
     /**
@@ -130,6 +143,7 @@ class DocenteController extends Controller
             }
             return response()->json('');
         }
+        //Aborta la ejecucion si la petion no es via ajax
         abort(500);
     }
 
