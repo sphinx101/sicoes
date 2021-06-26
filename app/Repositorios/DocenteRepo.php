@@ -130,6 +130,7 @@ class DocenteRepo
                 'errors' => [
                     'message' => $qEx->getMessage(),
                     'sql_exception_code' => $qEx->getCode(),
+                    'code' => 404
                 ],
                 'success' => false
             ];
@@ -138,6 +139,7 @@ class DocenteRepo
                 'errors' => [
                     'message' => $mEx->getMessage(),
                     'sql_exception_code' => $mEx->getCode(),
+                    'code' => 404
                 ],
                 'success' => false
             ];
@@ -145,6 +147,7 @@ class DocenteRepo
             return [
                 'errors' => [
                     'message' => $error->getMessage(),
+                    'sql_exception_code' => '',
                     'code' => $error->getCode(),
                 ],
                 'success' => false
