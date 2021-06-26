@@ -87,6 +87,7 @@ class DocenteRepo
             return [
                 'errors' => [
                     'message' => $error->getMessage(),
+                    'sql_exception_code' => '',
                     'code' => $error->getCode(),
                 ],
                 'success' => false
