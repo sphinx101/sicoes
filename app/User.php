@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Docente');
     }
 
+    public function alumno()
+    {
+        return $this->hasOne('App\Models\Alumno');
+    }
+
     //************************** A D M I N L T E ****************************************** */
 
     public function adminlte_image()

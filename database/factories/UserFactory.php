@@ -34,14 +34,14 @@ $factory->defineAs(User::class, 'docentes', function (Faker $faker) {
         'name'           => $faker->name,
         'email'          => $faker->unique()->safeEmail,
         'type'           => Role::query()
-            ->where(
-                'name',
-                $faker->randomElement(
-                    $array = array('supervisor', 'director', 'docente', 'administrativo')
-                )
-            )
-            ->first()
-            ->name,
+                                ->where(
+                                    'name',
+                                    $faker->randomElement(
+                                        $array = array('supervisor', 'director', 'docente', 'administrativo')
+                                    )
+                                )
+                                ->first()
+                                ->name,
         'password'       => bcrypt('12345678'),
         'remember_token' => Str::random(10)
 

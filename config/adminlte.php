@@ -237,7 +237,8 @@ return [
         ],
         [
             'text'        => 'Listar',
-            'url'         => '#',
+            'route'       => 'alumnos.index',
+            //'url'         => '#',
             'icon'        => 'fas fa-sort-alpha-down',
             'role'        => ['docente'],
         ],

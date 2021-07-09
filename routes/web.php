@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('docentes', 'Docente\DocenteController')->except(['edit']);
+    Route::resource('alumnos', 'Alumno\AlumnoController');
 
     Route::post('ajax/docentes', 'Docente\DocenteController@getDocentes')->name('ajax.docentes.index');
 });

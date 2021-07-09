@@ -106,9 +106,9 @@ class CreateSicoesTables extends Migration
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('alumno_id')->unsigned();
-            $table->foreign('alumno_id')->references('id')->on('alumnos')->onUpdate('cascade');
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('aula_id')->unsigned();
-            $table->foreign('aula_id')->references('id')->on('aulas')->onUpdate('cascade');
+            $table->foreign('aula_id')->references('id')->on('aulas')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
             $table->softDeletes();

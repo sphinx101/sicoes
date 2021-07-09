@@ -26,4 +26,8 @@ class Centrotrabajo extends Model
     {
         return $this->hasMany('App\Models\Docente');
     }
+    public function alumnos()
+    {
+        return $this->hasMany('App\Models\Alumno');
+    }
 }

@@ -11,7 +11,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 'docentes', 500)->create()->each(function ($user) {
+        /*factory(App\User::class, 'docentes', 500)->create()->each(function ($user) {
             $rol = App\Models\Role::where('name', $user->type)->get();
 
             $faker = Faker\Factory::create('es_ES');
@@ -30,9 +30,9 @@ class UsersSeeder extends Seeder
                 'telefono'  => $faker->phoneNumber,
                 'celular'   => $faker->phoneNumber
             ]);
-        });
+        });*/
 
-        /*factory(App\User::class, 'alumnos', 200)->create()->each(function ($user) {
+        factory(App\User::class, 'alumnos', 1000)->create()->each(function ($user) {
             $rol = App\Models\Role::where('name', $user->type)->get();
 
             $faker = Faker\Factory::create('es_ES');
@@ -49,6 +49,6 @@ class UsersSeeder extends Seeder
                 'municipio' => $faker->cityPrefix,
 
             ]);
-        });*/
+        });
     }
 }

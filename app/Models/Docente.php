@@ -45,6 +45,10 @@ class Docente extends Model
     ];
 
     /****************************  R E L A C I O N E S  *********************************************/
+    public function aulas()
+    {
+        return $this->hasMany('App\Models\Aula');
+    }
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -55,7 +59,7 @@ class Docente extends Model
         return $this->belongsTo('App\Models\Centrotrabajo');
     }
 
-    //****************************** A C C E S O R E S ****************************** */
+    /****************************** A C C E S O R E S ****************************** */
     public function getNombreCompletoAttribute()
     {
         return $this->nombre . ' ' . $this->appaterno . ' ' . $this->apmaterno;
