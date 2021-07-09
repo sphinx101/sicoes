@@ -89,7 +89,9 @@ class CreateSicoesTables extends Migration
         });
         Schema::create('aulas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('docente_id')->unsigned();
+            $table->string('nombre');
+            $table->string('ubicacion');
+           /* $table->integer('docente_id')->unsigned();
             $table->foreign('docente_id')->references('id')->on('docentes')->onUpdate('cascade'); //docentes-aulas
             $table->integer('turno_id')->unsigned();
             $table->foreign('turno_id')->references('id')->on('turnos')->onUpdate('cascade'); //turnos-aulas
@@ -98,7 +100,8 @@ class CreateSicoesTables extends Migration
             $table->integer('grado_id')->unsigned();
             $table->foreign('grado_id')->references('id')->on('grados')->onUpdate('cascade'); //grados-aulas
             $table->integer('cicloescolar_id')->unsigned();
-            $table->foreign('cicloescolar_id')->references('id')->on('cicloescolares')->onUpdate('cascade'); //cicloescolares-aulas
+            $table->foreign('cicloescolar_id')->references('id')->on('cicloescolares')->onUpdate('cascade'); //cicloescolares-aulas*/
+
 
             $table->timestamps();
             $table->softDeletes();
