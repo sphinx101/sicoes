@@ -32,29 +32,34 @@ class Aula extends Model
     ];
 
     /*************************************** R E L A C I O N E S **************************************** */
-    public function turno()
+    public function turnos()
     {
-        return $this->belongsTo('App\Models\Turno');
+        return $this->belongsToMany('App\Models\Turno', 'aulasasignadas')
+            ->withPivot('inscripcion_id', 'docente_id', 'grado_id', 'grupo_id')
+            ->withTimestamps();
     }
-    public function grupo()
+    public function grupos()
     {
-        return $this->belongsTo('App\Models\Grupo');
+        return $this->belongsToMany('App\Models\Grupo', 'aulasasignadas')
+            ->withPivot('inscripcion_id', 'docente_id', 'grado_id', 'turno_id')
+            ->withTimestamps();
     }
-    public function grado()
+    public function grados()
     {
-        return $this->belongsTo('App\Models\Grado');
+        return $this->belongsToMany('App\Models\Grado', 'aulasasignadas')
+            ->withPivot('inscripcion_id', 'docente_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
     }
-    public function cicloescolar()
+    public function docentes()
     {
-        return $this->belongsTo('App\Models\Cicloescolar');
+        return $this->belongsToMany('App\Models\Docente', 'aulasasignadas')
+            ->withPivot('inscripcion_id', 'grado_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
     }
-    public function docente()
+    public function inscripciones()
     {
-        return $this->belongsTo('App\Models\Docente');
-    }
-    public function alumnos()
-    {
-        // relacion muchos a muchos con tabla pivote "inscripciones"
-        return $this->belongsToMany('App\Models\Alumno', 'inscripciones')->withTimestamps();
+        return $this->belongsToMany('App\Models\Inscripcion', 'aulasasignadas')
+            ->withPivot('docente_id', 'grado_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
     }
 }

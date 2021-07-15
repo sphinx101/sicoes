@@ -45,10 +45,37 @@ class Docente extends Model
     ];
 
     /****************************  R E L A C I O N E S  *********************************************/
+    public function turnos()
+    {
+        return $this->belongsToMany('App\Models\Turno', 'aulasasignadas')
+            ->withPivot('aula_id', 'inscripcion_id', 'grado_id', 'grupo_id')
+            ->withTimestamps();
+    }
+    public function grupos()
+    {
+        return $this->belongsToMany('App\Models\Grupo', 'aulasasignadas')
+            ->withPivot('aula_id', 'inscripcion_id', 'grado_id', 'turno_id')
+            ->withTimestamps();
+    }
+    public function grados()
+    {
+        return $this->belongsToMany('App\Models\Grado', 'aulasasignadas')
+            ->withPivot('aula_id', 'inscripcion_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
+    }
+    public function inscripciones()
+    {
+        return $this->belongsToMany('App\Models\Inscripcion', 'aulasasignadas')
+            ->withPivot('aula_id', 'grado_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
+    }
     public function aulas()
     {
-        return $this->hasMany('App\Models\Aula');
+        return $this->belongsToMany('App\Models\Aula', 'aulasasignadas')
+            ->withPivot('inscripcion_id', 'grado_id', 'grupo_id', 'turno_id')
+            ->withTimestamps();
     }
+
     public function user()
     {
         return $this->belongsTo('App\User');

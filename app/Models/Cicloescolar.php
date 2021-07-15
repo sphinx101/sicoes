@@ -20,8 +20,8 @@ class Cicloescolar extends Model
     ];
 
     /**********************************************  R E L A C I O N E S ****************************** */
-    public function aulas()
+    public function inscripciones()
     {
-        return $this->hasMany('App\Models\Aula');
+        return $this->hasMany('App\Models\Inscripciones');
     }
 }

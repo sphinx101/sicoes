@@ -39,10 +39,9 @@ class Alumno extends Model
     ];
 
     /**************************** R E L A C I O N E S ******************************* */
-    public function aulas()
+    public function inscripciones()
     {
-        // relacion muchos a muchos con tabla pivote "inscripciones"
-        return $this->belongsToMany('App\Models\Aula', 'inscripciones')->withTimestamps();
+        return $this->hasMany('App\Models\Inscripciones');
     }
     public function user()
     {

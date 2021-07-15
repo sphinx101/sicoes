@@ -91,18 +91,6 @@ class CreateSicoesTables extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('ubicacion');
-           /* $table->integer('docente_id')->unsigned();
-            $table->foreign('docente_id')->references('id')->on('docentes')->onUpdate('cascade'); //docentes-aulas
-            $table->integer('turno_id')->unsigned();
-            $table->foreign('turno_id')->references('id')->on('turnos')->onUpdate('cascade'); //turnos-aulas
-            $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('id')->on('grupos')->onUpdate('cascade'); //grupos-aulas
-            $table->integer('grado_id')->unsigned();
-            $table->foreign('grado_id')->references('id')->on('grados')->onUpdate('cascade'); //grados-aulas
-            $table->integer('cicloescolar_id')->unsigned();
-            $table->foreign('cicloescolar_id')->references('id')->on('cicloescolares')->onUpdate('cascade'); //cicloescolares-aulas*/
-
-
             $table->timestamps();
             $table->softDeletes();
         });
@@ -110,8 +98,28 @@ class CreateSicoesTables extends Migration
             $table->increments('id');
             $table->integer('alumno_id')->unsigned();
             $table->foreign('alumno_id')->references('id')->on('alumnos')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('cicloescolar_id')->unsigned();
+            $table->foreign('cicloescolar_id')->references('id')->on('cicloescolares')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('folio');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        Schema::create('aulasasignadas', function (Blueprint $table) {
+
             $table->integer('aula_id')->unsigned();
             $table->foreign('aula_id')->references('id')->on('aulas')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('inscripcion_id')->unsigned();
+            $table->foreign('inscripcion_id')->references('id')->on('inscripciones')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('docente_id')->unsigned();
+            $table->foreign('docente_id')->references('id')->on('docentes')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('grado_id')->unsigned();
+            $table->foreign('grado_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('grupo_id')->unsigned();
+            $table->foreign('grupo_id')->references('id')->on('grupos')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('turno_id')->unsigned();
+            $table->foreign('turno_id')->references('id')->on('turnos')->onUpdate('cascade')->onDelete('cascade');
+
 
             $table->timestamps();
             $table->softDeletes();
@@ -253,11 +261,12 @@ class CreateSicoesTables extends Migration
         Schema::dropIfExists('calificaciones');
         Schema::dropIfExists('materias');
         Schema::dropIfExists('periodos');
-        Schema::dropIfExists('niveles');
+        //Schema::dropIfExists('niveles');
         Schema::dropIfExists('alumno_padretutor');
         Schema::dropIfExists('parentescos');
         Schema::dropIfExists('padretutores');
         Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('aulasasignadas');
         Schema::dropIfExists('inscripciones');
         Schema::dropIfExists('aulas');
         Schema::dropIfExists('alumnos');
